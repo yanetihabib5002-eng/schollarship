@@ -1,6 +1,7 @@
 const { MongoClient } = require('mongodb');
 const { MongoMemoryServer } = require('mongodb-memory-server');
 
+const MONGO_URI = process.env.MONGO_URI || '';
 let DB_NAME = process.env.MONGO_DB_NAME || 'schollarship';
 
 let client = null;
@@ -203,8 +204,18 @@ function db() {
 
 async function connect() {
   if (mdb) return mdb;
-  mongod = await MongoMemoryServer.create({ instance: { dbPath: require('path').join(process.cwd(), 'data'), storageEngine: 'wiredTiger' } });
-  const uri = mongod.getUri();
+  let uri;
+  if (MONGO_URI) {
+    uri = MONGO_URI;
+    console.log('[DB] Connexion à MongoDB Atlas...');
+  } else {
+    const path = require('path');
+    mongod = await MongoMemoryServer.create({
+      instance: { dbPath: path.join(process.cwd(), 'data'), storageEngine: 'wiredTiger' },
+    });
+    uri = mongod.getUri();
+    console.log('[DB] Démarrage MongoDB embarqué...');
+  }
   client = new MongoClient(uri);
   await client.connect();
   mdb = client.db(DB_NAME);
