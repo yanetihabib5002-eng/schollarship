@@ -16,9 +16,16 @@ import SettingsPage from './pages/admin/SettingsPage'
 import StatisticsPage from './pages/admin/StatisticsPage'
 import MobileDashboard from './pages/mobile/MobileDashboard'
 import MobileStudents from './pages/mobile/MobileStudents'
+import MobileTeachers from './pages/mobile/MobileTeachers'
+import MobileClasses from './pages/mobile/MobileClasses'
+import MobileSubjects from './pages/mobile/MobileSubjects'
+import MobileAssignments from './pages/mobile/MobileAssignments'
 import MobileGrades from './pages/mobile/MobileGrades'
+import MobileGradeValidation from './pages/mobile/MobileGradeValidation'
 import MobileReportCards from './pages/mobile/MobileReportCards'
 import MobileStatistics from './pages/mobile/MobileStatistics'
+import MobileSettings from './pages/mobile/MobileSettings'
+import MobileBackup from './pages/mobile/MobileBackup'
 import AdminLayout from './components/layout/AdminLayout'
 import MobileLayout from './components/layout/MobileLayout'
 import ProtectedRoute from './components/shared/ProtectedRoute'
@@ -52,17 +59,17 @@ function MobileRoutes() {
       <Route element={<MobileLayout />}>
         <Route index element={<Navigate to="/admin/dashboard" replace />} />
         <Route path="dashboard" element={<MobileDashboard />} />
-        <Route path="teachers" element={<MobileDashboard />} />
+        <Route path="teachers" element={<MobileTeachers />} />
         <Route path="students" element={<MobileStudents />} />
-        <Route path="classes" element={<MobileDashboard />} />
-        <Route path="subjects" element={<MobileDashboard />} />
-        <Route path="assignments" element={<MobileDashboard />} />
+        <Route path="classes" element={<MobileClasses />} />
+        <Route path="subjects" element={<MobileSubjects />} />
+        <Route path="assignments" element={<MobileAssignments />} />
         <Route path="grades" element={<MobileGrades />} />
-        <Route path="grades/validation" element={<MobileGrades />} />
+        <Route path="grades/validation" element={<MobileGradeValidation />} />
         <Route path="report-cards" element={<MobileReportCards />} />
         <Route path="statistics" element={<MobileStatistics />} />
-        <Route path="backup" element={<div className="text-center py-20 text-text-muted text-sm">Sauvegarde (à venir)</div>} />
-        <Route path="settings" element={<MobileDashboard />} />
+        <Route path="backup" element={<MobileBackup />} />
+        <Route path="settings" element={<MobileSettings />} />
       </Route>
     </Routes>
   )
